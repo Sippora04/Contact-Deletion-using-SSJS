@@ -1,0 +1,19 @@
+// Deleting all records from a non sendable data extension using SSJS
+<script runat="server">
+  Platform.Load("core", "1.1.1");
+  try {
+    var deKey = "EXTERNAL_KEY_OF_YOUR_DATA_EXTENSION";
+    var filter = {Property:"Name",SimpleOperator:"isNotNull"};
+    var deObj = DataExtension.Init(deKey);
+    var rows = deObj.Rows.Retrieve(filter);
+    // display rows value
+    //Write("<br>Rows count: " + rows.length);
+    for (var i = 0; i < rows.length; i++) {
+      var deleteResult = deObj.Rows.Remove(["Name"], [rows[i].Name]);
+      //Write("<br>Deleted row: " + rows[i].Name);
+    }
+  }
+  catch (ex) {
+    //Write("Error: " + Stringify(ex));
+  }
+</script>

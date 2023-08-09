@@ -3,14 +3,14 @@
   Platform.Load("core", "1.1.1");
   try {
     var deKey = "EXTERNAL_KEY_OF_YOUR_DATA_EXTENSION";
-    var filter = {Property:"Name",SimpleOperator:"isNotNull"};
+    var filter = {Property:"Field_Name",SimpleOperator:"isNotNull"};
     var deObj = DataExtension.Init(deKey);
     var rows = deObj.Rows.Retrieve(filter);
     // display rows value
     //Write("<br>Rows count: " + rows.length);
     for (var i = 0; i < rows.length; i++) {
-      var deleteResult = deObj.Rows.Remove(["Name"], [rows[i].Name]);
-      //Write("<br>Deleted row: " + rows[i].Name);
+      var deleteResult = deObj.Rows.Remove(["Field_Name"], [rows[i].Field_Name]);
+      //Write("<br>Deleted row: " + rows[i].Field_Name);
     }
   }
   catch (ex) {
